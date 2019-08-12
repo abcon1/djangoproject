@@ -5,6 +5,7 @@ Babel==2.7.0
 certifi==2019.6.16
 chardet==3.0.4
 Click==7.0
+dnspython==1.16.0
 docutils==0.15.2
 Flask==1.1.1
 Flask-Cors==3.0.8
@@ -18,7 +19,6 @@ Jinja2==2.10.1
 MarkupSafe==1.1.1
 mongoengine==0.18.2
 packaging==19.1
-pkg-resources==0.0.0
 Pygments==2.4.2
 pymongo==3.8.0
 pyparsing==2.4.2
