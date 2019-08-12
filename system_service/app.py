@@ -32,7 +32,11 @@ def run(*args, **kwargs):
     #     'password': 'db password here'
     # }
 
-    app.secret_key = "this is very secret"
+    app.config['MONGODB_SETTINGS'] = {
+        'host': 'mongodb+srv://tests:tests12345@cluster0-sf4tf.mongodb.net'
+    }
+
+    app.secret_key = 'this is very secret'
 
     db = database.create(app)
 
