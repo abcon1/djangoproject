@@ -12,24 +12,17 @@ class Device(Resource):
         return None, 200
 
     def __remove_device(self, _id):
-        # TODO: remove device from database.
-        # in case of an error:
-        # - raise relevant exception from database
-        # - catch it here and raise InternalServiceError to client
         pass
 
 
 class Devices(Resource):
     def get(self):
-        # return all devices to client
+
         pass
 
     def post(self):
-        # TODO: add request validation
-        # raise SchemaValidationError to client in case of bad request
 
-        _request = None # TODO: Assign validated request to _request
-        self.__add_devices(_request)
+        self.__add_devices()
 
         return None, 200
 
@@ -37,8 +30,6 @@ class Devices(Resource):
         devices = [tuple(device.values()) for device in _request['devices']]
 
         try:
-            # TODO: add devices into database,
-            # make sure there are no duplicated devices
             pass
         except Exception:
             raise InternalServerError(
