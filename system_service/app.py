@@ -23,15 +23,6 @@ def run(*args, **kwargs):
     global api
     global db
 
-    # TODO: add real database parameters
-    # app.config['MONGODB_SETTINGS'] = {
-    #     'db': 'db name here',
-    #     'host': 'db host here (if host is uri - db name will taken from here)',
-    #     'port': 'db port here',
-    #     'username': 'db username here',
-    #     'password': 'db password here'
-    # }
-
     app.config['MONGODB_SETTINGS'] = {
         'host': 'mongodb+srv://tests:tests12345@cluster0-sf4tf.mongodb.net'
     }
