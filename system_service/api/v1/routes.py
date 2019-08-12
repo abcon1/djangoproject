@@ -7,8 +7,11 @@ from system_service.app import logger, app
 
 
 def create(api: Api):
-    api.add_resource(Devices, "/api/v1/devices")
-    api.add_resource(Device, "/api/v1/devices/<int:id>")
+    api_prefix = "/api/v1"
+    device_id = "<string:nic_id>"
+
+    api.add_resource(Devices, "{}/devices".format(api_prefix))
+    api.add_resource(Device, "{}/devices/{}".format(api_prefix, device_id))
 
     logger.info("[API] Loaded \'devices\' resource.")
 

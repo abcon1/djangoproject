@@ -5,7 +5,7 @@ from flask_cors import CORS
 
 from system_service.logger import load_logger
 
-CORS_ALLOWED_ORIGINS_LIST = [ "?" ]
+CORS_ALLOWED_ORIGINS_LIST = ["?"]
 
 app = Flask(
     __name__,

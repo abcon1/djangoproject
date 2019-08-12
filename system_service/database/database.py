@@ -3,6 +3,7 @@ from flask_mongoengine import MongoEngine
 
 
 def create(app: Flask):
+    app.logger.info('[DATABASE] Starting MongoDB...')
     db = MongoEngine()
 
     db.init_app(app)
