@@ -7,6 +7,8 @@ def create(app: Flask):
     db = MongoEngine()
 
     db.init_app(app)
+    print('Database NAME')
+    print(db.get_db().name)
     app.logger.info('[DATABASE] MongoDB started on "{}" '
                     '{}.'.format(db.get_db().name, db.get_db().client.address))
 

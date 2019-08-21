@@ -1,6 +1,6 @@
 import argparse
 
-from system_service import app
+import app
 
 if __name__ == '__main__':
     run_parser = argparse.ArgumentParser(add_help=False)

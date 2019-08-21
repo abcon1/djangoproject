@@ -1,9 +1,9 @@
 from flask import Flask
 from flask_restful import Api
 
-from system_service.api.v1 import routes
-from system_service.api.v1.common.errors import errors
-from system_service.app import logger
+from api.v1 import routes
+from api.v1.common.errors import errors
+from app import logger
 
 
 def create(app: Flask):

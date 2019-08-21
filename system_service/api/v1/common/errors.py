@@ -17,6 +17,15 @@ class DeviceAlreadyExistsError(Exception):
 class DeviceNotExistsError(Exception):
     pass
 
+class UserNotExistsError(Exception):
+    pass
+
+class UserQuotaFullError(Exception):
+    pass
+
+class DeviceAlreadyExistsError(Exception):
+    pass
+
 
 errors = {
     'InternalServerError': {

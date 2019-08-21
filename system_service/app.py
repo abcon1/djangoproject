@@ -3,7 +3,7 @@ from pathlib import Path
 from flask import Flask
 from flask_cors import CORS
 
-from system_service.logger import load_logger
+from logger import load_logger
 
 CORS_ALLOWED_ORIGINS_LIST = ["?"]
 
@@ -18,7 +18,7 @@ db = None
 
 
 def run(*args, **kwargs):
-    from .database import database
+    from database import database
 
     global api
     global db
@@ -27,13 +27,13 @@ def run(*args, **kwargs):
         'host': 'mongodb+srv://tests:tests12345@cluster0-sf4tf.mongodb.net'
     }
 
-    app.secret_key = 'this is very secret'
+    app.secret_key = 'a26be1a658027b1749da74befe4c25ca'
 
     db = database.create(app)
 
     logger.info('[SERVICE] Started.')
 
-    from .api import api
+    from api import api
 
     api = api.create(app)
 
