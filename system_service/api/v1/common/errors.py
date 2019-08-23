@@ -6,7 +6,9 @@ from flask import jsonify
 class APIException(Exception):
     status_code = HTTPStatus.UNAUTHORIZED
 
-    def __init__(self, message="Error while processing request", status_code=None, payload=None):
+    def __init__(
+        self, message="Error while processing request", status_code=None, payload=None
+    ):
         Exception.__init__(self)
         self.message = message
         if status_code is not None:
@@ -16,7 +18,7 @@ class APIException(Exception):
     def to_dict(self):
         rv = dict(self.payload or ())
         rv["message"] = self.message
-        print(rv["message"])
+        print("[Error] {}".format(rv["message"]))
         return rv
 
 
@@ -34,6 +36,7 @@ class SchemaValidationError(APIException):
 
 class DeviceAlreadyExistsError(APIException):
     status_code = HTTPStatus.CONFLICT
+
 
 class UserAlreadyExistsError(APIException):
     status_code = HTTPStatus.CONFLICT

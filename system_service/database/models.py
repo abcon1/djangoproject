@@ -7,7 +7,9 @@ class Device(db.Document):
     date_created = db.DateTimeField(default=datetime.datetime.utcnow)
     assigned_to = db.IntField(max_value=3)
 
+
 from werkzeug.security import check_password_hash
+
 
 class User(db.Document):
     username = db.StringField(required=True, unique=True, min_length=3)

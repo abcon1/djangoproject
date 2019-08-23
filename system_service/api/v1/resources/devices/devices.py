@@ -16,6 +16,7 @@ from api.v1.common.errors import (
 
 auth = HTTPBasicAuth()
 
+
 class Device(Resource):
     @auth.login_required
     def put(self, nic_id):
@@ -83,6 +84,7 @@ class Devices(Resource):
                 )
 
         return res_devices
+
 
 @auth.verify_password
 def verify_password(username, password):

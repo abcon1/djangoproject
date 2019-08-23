@@ -11,13 +11,14 @@ from api.v1.common.errors import (
     DeviceAlreadyExistsError,
     BadRequestError,
     SchemaValidationError,
-    UserAlreadyExistsError
+    UserAlreadyExistsError,
 )
 from app import db, logger
 
 from database import models
 
 auth = HTTPBasicAuth()
+
 
 class User(Resource):
     def post(self):
@@ -31,33 +32,31 @@ class User(Resource):
         parser = reqparse.RequestParser()
 
         parser.add_argument(
-            "username",
-            type=str,
-            help="Username for new user",
-            location="json"
+            "username", type=str, help="Username for new user", location="json"
         )
 
         parser.add_argument(
-            "password",
-            type=str,
-            help="Password for user",
-            location="json"
-            )
+            "password", type=str, help="Password for user", location="json"
+        )
 
         if "devices" not in _request:
-            raise BadRequestError("List of device id to be assigned for user, pass empty list for None")
+            raise BadRequestError(
+                "List of device id to be assigned for user, pass empty list for None"
+            )
 
         args = parser.parse_args()
         password = args["password"]
         hashed_password = generate_password_hash(password, method="sha256")
 
         user = models.User(
-        username=args["username"], password=hashed_password, devices=_request['devices']
+            username=args["username"],
+            password=hashed_password,
+            devices=_request["devices"],
         )
         try:
             user.save()
         except Exception:
-            raise UserAlreadyExistsError('User with given username already exists')
+            raise UserAlreadyExistsError("User with given username already exists")
         return user.to_json()
 
 
@@ -91,15 +90,18 @@ class AddDevice(Resource):
                 add_device = models.Device.objects.get(id=device)
             except Exception:
                 raise DeviceNotExistsError()
-            
+
             if add_device.assigned_to == 3:
-                raise UserQuotaFullError("Can't assign decive {} to more than 3 users".format(add_device.id))
+                raise UserQuotaFullError(
+                    "Can't assign decive {} to more than 3 users".format(add_device.id)
+                )
 
             models.User.objects(id=_user_id).update_one(push__devices=device)
             try:
                 models.Device.objects(id=device).update_one(inc__assigned_to=1)
             except Exception:
                 raise UserQuotaFullError()
+
 
 @auth.verify_password
 def verify_password(username, password):

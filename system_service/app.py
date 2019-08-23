@@ -5,13 +5,19 @@ from flask_cors import CORS
 
 from logger import load_logger
 
-CORS_ALLOWED_ORIGINS_LIST = ["http://127.0.0.1:8080", "http://localhost:8080", "http://127.0.0.1:80", "http://localhost:80"]
+CORS_ALLOWED_ORIGINS_LIST = [
+    "http://127.0.0.1:8080",
+    "http://localhost:8080",
+    "http://127.0.0.1:80",
+    "http://localhost:80",
+]
 
 app = Flask(__name__, static_folder=str(Path(__file__).resolve().parents[1] / "static"))
 
 logger = load_logger(app)
 api = None
 db = None
+
 
 def run(*args, **kwargs):
     global api
@@ -33,7 +39,6 @@ def run(*args, **kwargs):
 
     api = api.create(app)
 
-    CORS(app, origins=CORS_ALLOWED_ORIGINS_LIST,
-         supports_credentials=True)
+    CORS(app, origins=CORS_ALLOWED_ORIGINS_LIST, supports_credentials=True)
 
     app.run(*args, **kwargs)
